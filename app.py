@@ -1,19 +1,25 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from SHL_assessment.SHL_API.recommender import SHLRecommender
+from recommender import get_recommendations
 
 app = FastAPI()
-rec = SHLRecommender()
 
-class QueryInput(BaseModel):
-    text: str
-    top_k: int = 5
+class Query(BaseModel):
+    query: str
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
 @app.post("/recommend")
-def recommend(input: QueryInput):
-    results = rec.recommend(input.text, top_k=input.top_k)
-    return results.to_dict(orient="records")
+def recommend(q: Query):
+    results = get_recommendations(q.query)
+    # Must return at most 10
+    results = results[:10]
+
+    return {
+        "query": q.query,
+        "recommendations": [
+            {"assessment_url": url} for url in results
+        ]
+    }

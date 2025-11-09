@@ -71,3 +71,11 @@ class SHLRecommender:
         # Final top-k
         k = min(top_k, len(cand))
         return cand.head(k)[["name","url","canon_url"]]
+    
+    # === EXPORTED FUNCTION USED BY app.py ===
+
+_recommender = SHLRecommender()
+
+def get_recommendations(query: str):
+    results = _recommender.recommend(query, top_k=10)
+    return results["url"].tolist()
