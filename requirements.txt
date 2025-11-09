@@ -7,4 +7,3 @@ accelerate
 sentence-transformers
 scikit-learn
 numpy
-cross-encoder
