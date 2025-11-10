@@ -36,6 +36,11 @@ This repository contains my complete SHL assessment recommendation system, built
 
 👉 https://github.com/Puspita0707/shl_recommender_api
 
+🔹 HuggingFace UI:( Run this to get the frontend)
+
+👉 https://huggingface.co/spaces/Pushpa12234/SHL_RECOMMENDER_UI
+
+
 1. System Architecture:
  
  Query → Embedding Retrieval (MiniLM)
